@@ -20,7 +20,7 @@ public class AccountController {
     public String register(Model model) {       
         Account account = new Account();
         model.addAttribute("account", account);
-        return "register";
+        return "account_views/register";
     }
 
     @PostMapping("/register")
@@ -31,6 +31,11 @@ public class AccountController {
 
     @GetMapping("/login")
     public String login(Model model) {
-        return "login";
+        return "account_views/login";
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model) {
+        return "account_views/profile";
     }
 }

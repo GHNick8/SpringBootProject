@@ -9,8 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-// Explicitly import withDefaults() from Customizer
-import static org.springframework.security.config.Customizer.withDefaults;
+import com.adminnick.SpringBootProject.Util.Constants.Privillages;
 
 @Configuration
 @EnableWebSecurity
@@ -20,6 +19,7 @@ public class WebSecurityConfig {
         "/",
         "/login",
         "/register",
+        "/profile",
         "/db-console/**",
         "/css/**",
         "/fonts/",
@@ -35,8 +35,11 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers(WHITELIST)
-                .permitAll()
+                .requestMatchers(WHITELIST).permitAll()
+                .requestMatchers("/profile/**").authenticated()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/editor/**").hasAnyRole("ADMIN", "EDITOR")
+                .requestMatchers("/admin/**").hasAnyAuthority(Privillages.ACCESS_ADMIN_PANEL.getPrivillage())
                 .anyRequest()
                 .authenticated()  
         )
@@ -51,9 +54,10 @@ public class WebSecurityConfig {
         )
         .logout(logout -> logout
             .logoutUrl("/logout")
-            .logoutSuccessUrl("/logout?success")
+            .logoutSuccessUrl("/")
         )
-        .httpBasic(withDefaults());
+        .httpBasic(httpBasic -> httpBasic.disable()
+        );
 
         // Remove after upgrading the database
         http.csrf(csrf -> csrf.disable());

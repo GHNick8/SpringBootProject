@@ -3,6 +3,7 @@ package com.adminnick.SpringBootProject.Services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.adminnick.SpringBootProject.Models.Account;
+import com.adminnick.SpringBootProject.Models.Authority;
 import com.adminnick.SpringBootProject.Repository.AccountRepository;
 import com.adminnick.SpringBootProject.Util.Constants.Roles;
 
@@ -28,7 +30,9 @@ public class AccountService implements UserDetailsService {
 
     public Account save(Account account) {
         account.setPassword(passwordEncoder.encode(account.getPassword()));
-        account.setRole(Roles.USER.getRole());
+        if (account.getRole() == null) {
+            account.setRole(Roles.USER.getRole());
+        }
         return accountRepository.save(account);
     }
 
@@ -43,6 +47,15 @@ public class AccountService implements UserDetailsService {
         List<GrantedAuthority> grantedAuthority = new ArrayList<>();
         grantedAuthority.add(new SimpleGrantedAuthority(account.getRole()));
 
+        Set<Authority> authorities = account.getAuthorities();
+        for (Authority _auth: authorities) {
+            grantedAuthority.add(new SimpleGrantedAuthority(_auth.getName()));
+        }
+
         return new User(account.getEmail(), account.getPassword(), grantedAuthority);
+    }
+
+    public Optional<Account> findOneByEmail(String email) {
+        return accountRepository.findOneByEmailIgnoreCase(email);
     }
 }

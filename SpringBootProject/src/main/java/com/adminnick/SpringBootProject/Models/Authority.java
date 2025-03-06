@@ -16,4 +16,9 @@ public class Authority {
     private Long id;
 
     private String name;
+
+    @Override
+    public String toString() {
+        return "Authority [id=" + id + ", name=" + name + "]";
+    }
 }

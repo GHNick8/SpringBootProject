@@ -50,17 +50,16 @@ public class SeedData implements CommandLineRunner {
         account001.setFirstname("Admin");
         account001.setLastname("Nick");
         account001.setRole(Roles.ADMIN.getRole());
-        Set<Authority> authorities = new HashSet<>();
-        authorityService.findById(Privillages.RESET_ANY_USER_PASSWORD.getId())
-        .ifPresent(authorities::add);
-        authorityService.findById(Privillages.ACCESS_ADMIN_PANEL.getId())
-        .ifPresent(authorities::add);
 
         account002.setEmail("account002@techsphere.com");
         account002.setPassword("pass5678");
         account002.setFirstname("Editor");
         account002.setLastname("James");
         account002.setRole(Roles.EDITOR.getRole());
+        Set<Authority> authorities = new HashSet<>();
+        authorityService.findById(Privillages.ACCESS_ADMIN_PANEL.getId()).ifPresent(authorities::add);
+        authorityService.findById(Privillages.RESET_ANY_USER_PASSWORD.getId()).ifPresent(authorities::add);
+        account002.setAuthorities(authorities);
 
         account003.setEmail("account003@techsphere.com");
         account003.setPassword("pass7878");
@@ -89,7 +88,7 @@ public class SeedData implements CommandLineRunner {
 
             Post post002 = new Post();
             post002.setTitle(("New Frameworks"));
-            post002.setBody("2+ years experience.");
+            post002.setBody("<h4>2+ years experience.</h4>");
             post002.setAccount(account002);
             postService.save(post002);
         }

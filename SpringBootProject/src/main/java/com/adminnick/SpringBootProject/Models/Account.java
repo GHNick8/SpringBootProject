@@ -46,4 +46,12 @@ public class Account {
         inverseJoinColumns = {@JoinColumn(name="authority_id", referencedColumnName = "id")}
     )
     private Set<Authority> authorities = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Account [id=" + id + ", email=" + email + ", password=" + password 
+        + ", firstname=" + firstname + ", lastname=" + lastname + ", role=" + role
+        + ", posts=" + posts + ", authorities=" + authorities
+        + "]";
+    }
 }

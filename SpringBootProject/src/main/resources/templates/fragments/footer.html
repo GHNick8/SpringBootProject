@@ -1,0 +1,9 @@
+<footer class="bg-dark text-white text-center py-3 mt-4" th:fragment="footer">
+    <div class="container">
+        <p>&copy; <span th:text="${#dates.year(#dates.createNow())}"></span> Tech Sphere. All Rights Reserved.</p>
+        <p>
+            <a href="/privacy" class="text-white">Privacy Policy</a> |
+            <a href="/terms" class="text-white">Terms of Service</a>
+        </p>
+    </div>
+</footer>

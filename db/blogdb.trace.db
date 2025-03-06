@@ -95,3 +95,15 @@ Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:522)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 91 more
+2025-03-05 18:13:02.737548+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM ACCOUNT ACCOUNT_AUTHORITY [*]POST"; SQL statement:
+SELECT * FROM ACCOUNT ACCOUNT_AUTHORITY POST [42000-232]
+2025-03-05 18:13:43.607524+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM ACCOUNT ACCOUNT_AUTHORITY [*]AUTHORITY"; SQL statement:
+SELECT * FROM ACCOUNT ACCOUNT_AUTHORITY AUTHORITY [42000-232]
+2025-03-05 18:13:51.218268+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM ACCOUNT AUTHORITY [*]POST"; SQL statement:
+SELECT * FROM ACCOUNT AUTHORITY POST [42000-232]
+2025-03-05 19:14:48.830295+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM ACCOUNT ACCOUNT_AUTHORITY [*]AUTHORITY"; SQL statement:
+SELECT * FROM ACCOUNT ACCOUNT_AUTHORITY AUTHORITY [42000-232]
