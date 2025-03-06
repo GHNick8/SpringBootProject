@@ -22,6 +22,7 @@ import com.adminnick.SpringBootProject.Util.Constants.Roles;
 
 @Service
 public class AccountService implements UserDetailsService {
+
     @Autowired
     private AccountRepository accountRepository;
 
@@ -33,6 +34,9 @@ public class AccountService implements UserDetailsService {
         if (account.getRole() == null) {
             account.setRole(Roles.USER.getRole());
         }
+        if (account.getPhoto() == null) {
+            account.setPhoto("/static/afbeeldingen/Anon.png");
+        }        
         return accountRepository.save(account);
     }
 

@@ -1,5 +1,6 @@
 package com.adminnick.SpringBootProject.Config;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,28 +50,41 @@ public class SeedData implements CommandLineRunner {
         account001.setPassword("pass1234");
         account001.setFirstname("Admin");
         account001.setLastname("Nick");
+        account001.setAge(32);
+        account001.setDate_of_birth(LocalDate.parse("1992-08-21"));
+        account001.setGender("Male");
         account001.setRole(Roles.ADMIN.getRole());
+
+        Set<Authority> authorities = new HashSet<>();
+        authorityService.findById(Privillages.ACCESS_ADMIN_PANEL.getId()).ifPresent(authorities::add);
+        authorityService.findById(Privillages.RESET_ANY_USER_PASSWORD.getId()).ifPresent(authorities::add);
+        account001.setAuthorities(authorities);
 
         account002.setEmail("account002@techsphere.com");
         account002.setPassword("pass5678");
         account002.setFirstname("Editor");
         account002.setLastname("James");
+        account002.setAge(26);
+        account002.setDate_of_birth(LocalDate.parse("1999-01-01"));
+        account002.setGender("Male");
         account002.setRole(Roles.EDITOR.getRole());
-        Set<Authority> authorities = new HashSet<>();
-        authorityService.findById(Privillages.ACCESS_ADMIN_PANEL.getId()).ifPresent(authorities::add);
-        authorityService.findById(Privillages.RESET_ANY_USER_PASSWORD.getId()).ifPresent(authorities::add);
-        account002.setAuthorities(authorities);
-
+        
         account003.setEmail("account003@techsphere.com");
         account003.setPassword("pass7878");
         account003.setFirstname("User");
         account003.setLastname("Jefferson");
+        account003.setAge(26);
+        account003.setDate_of_birth(LocalDate.parse("1999-01-01"));
+        account003.setGender("Male");
         account003.setRole(Roles.USER.getRole());
 
         account004.setEmail("account004@techsphere.com");
         account004.setPassword("pass4545");
         account004.setFirstname("Jockey");
         account004.setLastname("Blunt");
+        account004.setAge(26);
+        account004.setDate_of_birth(LocalDate.parse("1999-01-01"));
+        account004.setGender("Male");
         account004.setRole(Roles.USER.getRole());
 
         accountService.save(account001);
