@@ -10,5 +10,5 @@ import com.adminnick.SpringBootProject.Models.Account;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
     Optional<Account> findOneByEmailIgnoreCase(String email);
-    Optional<Account> findByPasswordResetToken(String passwordResetToken);
+    Optional<Account> findByToken(String token);
 } 

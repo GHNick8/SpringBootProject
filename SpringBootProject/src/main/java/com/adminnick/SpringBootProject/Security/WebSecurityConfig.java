@@ -17,14 +17,16 @@ public class WebSecurityConfig {
         "/",
         "/login",
         "/register",
+        "/forgot-password",
         "/profile/**",
-        "/forgot-password/**",
         "/uploads/**",
         "/db-console/**",
         "/css/**",
         "/fonts/",
         "/images/**",
         "/js/**",
+        "/resources/**",
+        "/posts/**"
     };
 
     @Bean

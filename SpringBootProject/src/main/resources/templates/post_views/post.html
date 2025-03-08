@@ -11,49 +11,46 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     </head>
     <body>
       <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Danger</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                Are you sure?
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a id="delete" th:href="@{'/posts/' + ${post.id} + '/delete'}" class="btn btn-danger btn-lg active"
-                    role="button" aria-pressed="true">Delete</a>
-                </div>
+      <!-- Post Content -->
+       <section>
+        <div class="container">
+          <div class="post-container">
+            <h3 class="post-title" th:text="${post.title}">Title</h3>
+            <p class="post-meta">
+              <span th:text="'Author: ' + ${post.account.firstname}"></span> |
+              <span th:text="'Created: ' + ${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}"></span> |
+              <span th:text="'Updated: ' + ${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}"></span>
+            </p><hr>
+            <p class="post-body" th:utext="${post.body}">body</p>
+            <div sec:authorize="isAuthenticated()" th:if="${isOwner}" class="mt-4">
+              <a th:href="@{'/posts/' + ${post.id} + '/edit'}" class="btn btn-secondary btn-action">Edit</a>
+              <button type="button" class="btn btn-danger btn-action" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete
+              </button>
             </div>
-            </div>
+          </div>
         </div>
-        <section>
-            <div class="container  ">
-              <div class="post">
-                <h3><a th:text="${post.title}">Title</a></h3>
-                <h5 th:text="'Author: '+ ${post.account.firstname} + 
-                ' | Created at: '+${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')} +
-                ' | Updated at: '+${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm')}"></h5>
-                <p th:utext="${post.body}">body</p>
-                <hr color="grey" />
-                <div sec:authorize="isAuthenticated()" th:if="${isOwner}">
-                  <a th:href="@{'/posts/' + ${post.id} + '/edit'}" class="btn btn-secondary btn-lg active" role="button"
-                    aria-pressed="true">Edit</a> |
-        
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
-                      Delete
-                    </button>
-                </div>
-              </div>
+      </section>
+      <!-- Delete Confirmation Modal -->
+      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-          </section>
-          <th:block th:replace="~{fragments/footer :: footer}"></th:block>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="script.js"></script>
+            <div class="modal-body">
+              Are you sure you want to delete this post? This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <a id="delete" th:href="@{'/posts/' + ${post.id} + '/delete'}" class="btn btn-danger">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <script th:src="@{/js/script.js}"></script>
     </body>
 </html>

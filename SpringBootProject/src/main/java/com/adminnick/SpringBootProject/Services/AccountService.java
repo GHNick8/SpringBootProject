@@ -34,10 +34,6 @@ public class AccountService implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public Optional<Account> findByResetToken(String resetToken) {
-        return accountRepository.findByPasswordResetToken(resetToken);
-    }
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -78,6 +74,10 @@ public class AccountService implements UserDetailsService {
 
     public Optional<Account> findById(Long id) {
         return accountRepository.findById(id);
+    }
+
+    public Optional<Account> findByToken(String token) {
+        return accountRepository.findByToken(token);
     }
 
     public boolean handleProfilePhotoUpload(MultipartFile file, String email) {
