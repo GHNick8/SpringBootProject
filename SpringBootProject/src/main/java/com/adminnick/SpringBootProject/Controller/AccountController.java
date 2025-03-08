@@ -5,7 +5,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.apache.commons.text.RandomStringGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class AccountController {
 
     @Autowired
     private AccountService accountService;
+
+    // password token timeout set at 15 minutes 
+    private static final int password_token_timeout = 15;
 
     @GetMapping("/register")
     public String register(Model model) {       
@@ -179,6 +184,40 @@ public class AccountController {
             e.printStackTrace(); //Log error
             attributes.addFlashAttribute("error", "File upload failed: " + e.getMessage());
             return "redirect:/profile?error";
+        }
+    }
+
+    @GetMapping("/forgot-password")
+    public String forgotPassword(Model model) {
+        return "account_views/forgot-password";
+    }
+
+    @PostMapping("/reset-password")
+    public String processResetPassword(@RequestParam("email") String email, RedirectAttributes attributes) {
+        Optional<Account> optionalAccount = accountService.findOneByEmail(email);
+        if (optionalAccount.isPresent()) {
+            Account account = optionalAccount.get();
+            String resetToken = UUID.randomUUID().toString();
+            account.setPasswordResetToken(resetToken);
+            account.setPasswordResetTokenExpiry(LocalDateTime.now().plusMinutes(password_token_timeout));
+            accountService.save(account);
+            
+            attributes.addFlashAttribute("message", "Password reset email sent");
+            return "redirect:/reset-password-form?token=" + resetToken;
+        } else {
+            attributes.addFlashAttribute("error", "No user found with the email supplied");
+            return "redirect:/forgot-password";
+        }
+    }
+
+    @GetMapping("/reset-password-form")
+    public String reset_password_form(@RequestParam("token") String token, Model model) {
+        Optional<Account> optionalAccount = accountService.findByResetToken(token);
+        if (optionalAccount.isPresent()) {
+            model.addAttribute("token", token);
+            return "account_views/reset-password";
+        } else {
+            return "redirect:/forgot-password?error=invalid-token";
         }
     }
 }

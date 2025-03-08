@@ -18,6 +18,7 @@ public class WebSecurityConfig {
         "/login",
         "/register",
         "/profile/**",
+        "/forgot-password/**",
         "/uploads/**",
         "/db-console/**",
         "/css/**",
@@ -53,6 +54,13 @@ public class WebSecurityConfig {
         .logout(logout -> logout
             .logoutUrl("/logout")
             .logoutSuccessUrl("/")
+            .deleteCookies("JSESSIONID", "remember-me")
+            .permitAll()
+        )
+        .rememberMe(rememberMe -> rememberMe
+            // .key(null)
+            .rememberMeParameter("remember-me")
+            // .tokenValiditySeconds(14 * 24 * 60 *60) // equals 14 days 
         )
         .httpBasic(httpBasic -> httpBasic.disable()
         );

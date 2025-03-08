@@ -98,14 +98,54 @@ body {
     color: #555;
 }
 
-.login-container, .register-container {
+/* Login Containers */
+.login-container {
     margin: 20px 20px 290px 20px;
     max-width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
+.form-check-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.form-check-input {
+    transform: scale(1.2);
+    margin-right: 5px;
+}
+.forgot-password {
+    font-size: 14px;
+    text-decoration: none;
+    color: #007bff;
+}
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Register Containers */
 .register-container {
     margin: 20px 20px 40px 20px;
     max-width: 400px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.login-link {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #007bff;
+}
+.login-link:hover {
+    text-decoration: underline;
 }
 
 /* 404 page */
@@ -158,3 +198,4 @@ p {
 .btn-box button:hover {
     background-color: #0056b3;
 }
+

@@ -34,6 +34,10 @@ public class AccountService implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
 
+    public Optional<Account> findByResetToken(String resetToken) {
+        return accountRepository.findByPasswordResetToken(resetToken);
+    }
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 

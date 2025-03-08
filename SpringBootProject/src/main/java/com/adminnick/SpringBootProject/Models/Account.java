@@ -1,6 +1,7 @@
 package com.adminnick.SpringBootProject.Models;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,6 +61,10 @@ public class Account {
 
     @OneToMany(mappedBy = "account")
     private List<Post> posts;
+
+    private String passwordResetToken;
+
+    private LocalDateTime passwordResetTokenExpiry;
 
     @ManyToMany
     @JoinTable(
