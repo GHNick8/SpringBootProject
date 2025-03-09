@@ -95,8 +95,62 @@ public class SeedData implements CommandLineRunner {
         List<Post> posts = postService.getAll();
         if (posts.size() == 0) {
             Post post001 = new Post();
-            post001.setTitle("Technology");
-            post001.setBody("Perl & Cobol 85.");
+            post001.setTitle("Perl & COBOL 85: Bridging the Gap Between Legacy and Modern Programming");
+            post001.setBody("In the ever-evolving world of programming, where languages like Python, Java, and JavaScript dominate, there exist two powerful yet vastly different languages that have made a significant impact: Perl and COBOL 85. While one is a scripting powerhouse known for its text manipulation capabilities, the other has been the backbone of business applications for decades. Let’s dive into their history, uses, and how they continue to play a role in modern computing.\n" + //
+                                "\n" + //
+                                "Perl: The Swiss Army Knife of Scripting\n" + //
+                                "\n" + //
+                                "Perl, created by Larry Wall in 1987, was initially designed for text processing, but it quickly grew into a general-purpose scripting language. It gained popularity in the 1990s due to its powerful regular expressions, ease of integration with databases, and ability to handle various system administration tasks.\n" + //
+                                "\n" + //
+                                "Key Features of Perl:\n" + //
+                                "\n" + //
+                                "Text Processing: Excellent at pattern matching and data extraction.\n" + //
+                                "\n" + //
+                                "CPAN (Comprehensive Perl Archive Network): A vast collection of libraries for various functionalities.\n" + //
+                                "\n" + //
+                                "Flexibility: Supports multiple programming paradigms (procedural, object-oriented, and functional).\n" + //
+                                "\n" + //
+                                "Web Development: Used extensively for CGI scripts and early web applications.\n" + //
+                                "\n" + //
+                                "Automation & Scripting: Still widely used in system administration and DevOps.\n" + //
+                                "\n" + //
+                                "COBOL 85: The Business Giant That Won’t Die\n" + //
+                                "\n" + //
+                                "COBOL (Common Business-Oriented Language) was first introduced in 1959, but the COBOL 85 standard became a major milestone, improving the language’s capabilities. It is widely used in the financial sector, government agencies, and large-scale enterprise applications.\n" + //
+                                "\n" + //
+                                "Key Features of COBOL 85:\n" + //
+                                "\n" + //
+                                "Human-Readable Syntax: Designed to be understandable by non-programmers.\n" + //
+                                "\n" + //
+                                "Business-Oriented: Ideal for handling banking, insurance, and payroll systems.\n" + //
+                                "\n" + //
+                                "High Stability: Many legacy applications built in COBOL 85 are still running today.\n" + //
+                                "\n" + //
+                                "Batch Processing: Efficient for handling large-scale data transactions.\n" + //
+                                "\n" + //
+                                "Mainframe Compatibility: Runs on IBM mainframes and modern cloud-based architectures.\n" + //
+                                "\n" + //
+                                "Why Are Perl & COBOL 85 Still Relevant?\n" + //
+                                "\n" + //
+                                "Despite their age, both Perl and COBOL 85 continue to be used in specific industries where their unique strengths shine:\n" + //
+                                "\n" + //
+                                "Legacy Systems: Many financial institutions and government bodies still rely on COBOL 85 for critical infrastructure.\n" + //
+                                "\n" + //
+                                "Data Processing & ETL Pipelines: Perl is still utilized in UNIX/Linux environments for log parsing, automation, and DevOps scripts.\n" + //
+                                "\n" + //
+                                "Interoperability: COBOL applications are now being modernized to work with cloud computing, and Perl still finds its place in backend processing.\n" + //
+                                "\n" + //
+                                "The Future: Modernization & Integration\n" + //
+                                "\n" + //
+                                "While COBOL 85 developers are in high demand due to the need to maintain legacy systems, efforts are underway to integrate COBOL with modern technologies like cloud computing and microservices. On the other hand, Perl’s popularity has declined, but it remains an excellent tool for text manipulation and automation in DevOps environments.\n" + //
+                                "\n" + //
+                                "Organizations that depend on COBOL are now adopting COBOL modernization tools, such as converting COBOL code to Java or integrating COBOL with REST APIs. Meanwhile, Perl is being used alongside Python and Shell scripting for automation tasks.\n" + //
+                                "\n" + //
+                                "Conclusion\n" + //
+                                "\n" + //
+                                "Both Perl and COBOL 85 have stood the test of time, proving their resilience in an industry that rapidly evolves. While they may not be the first choice for new projects, they continue to power mission-critical applications. Whether you’re maintaining legacy banking systems in COBOL or automating tasks with Perl, understanding these languages can be a valuable skill in the tech world.\n" + //
+                                "\n" + //
+                                "Are you currently working with Perl or COBOL? Share your experiences in the comments!");
             post001.setAccount(account001);
             postService.save(post001);
 
@@ -105,6 +159,24 @@ public class SeedData implements CommandLineRunner {
             post002.setBody("<h4>2+ years experience.</h4>");
             post002.setAccount(account002);
             postService.save(post002);
+
+            Post post003 = new Post();
+            post003.setTitle(("Technology advanced"));
+            post003.setBody("New ways of improving UI.");
+            post003.setAccount(account002);
+            postService.save(post003);
+
+            Post post004 = new Post();
+            post004.setTitle(("Technology advanced pt.2"));
+            post004.setBody("New ways of improving UI and UX.");
+            post004.setAccount(account002);
+            postService.save(post004);
+
+            Post post005 = new Post();
+            post005.setTitle(("PERL 6"));
+            post005.setBody("The perl empire strikes back!");
+            post005.setAccount(account001);
+            postService.save(post005);
         }
     }
 }

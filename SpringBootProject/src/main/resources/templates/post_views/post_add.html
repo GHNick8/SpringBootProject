@@ -8,38 +8,50 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <title>Post_Add</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="/css/stijl.css">
+        <!-- Custom Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     </head>
     <body>
       <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
-      <section>
-          <div class="container">
-            <div class="heading_container">
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form_container">
-                  <h3> Add post </h3>
-                  <form action="#"
-                      th:action="@{/posts/add}"
-                      th:object="${post}"
-                      method="post">
-                    <div class="form-group">
-                      <input type="hidden" id="account" name="account" th:field="*{account}"/>
-                      <input id="title" th:field="*{title}" name="title" type="text" class="form-control" placeholder="title" />
+      <!-- Post Form -->
+      <section class="mt-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header text-center">
+                  <h3>Add a New Post</h3>
+                </div>
+                <div class="card-body">
+                  <form th:action="@{/posts/add}" th:object="${post}" method="post">
+                    <!-- Hidden Account Field -->
+                    <input type="hidden" id="account" name="account" th:field="*{account}" />
+                    <!-- Title Input -->
+                    <div class="mb-3">
+                      <label for="title" class="form-label">Title</label>
+                      <input type="text" id="title" th:field="*{title}" name="title" class="form-control" placeholder="Enter post title" required>
+                      <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
                     </div>
-                    <div class="form-group">
-                      <textarea id="editor" th:field="*{body}" name="body"></textarea>
+                    <!-- Body (Editor) -->
+                    <div class="mb-3">
+                      <label for="editor" class="form-label">Post Content</label>
+                      <textarea id="editor" th:field="*{body}" name="body" class="form-control" rows="6" placeholder="Write your post here..." required></textarea>
+                      <span class="text-danger" th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></span>
                     </div>
-                      <button type="submit"  class="btn btn-primary">
-                        Add post
-                      </button>
+                    <!-- Submit & Cancel Buttons -->
+                    <div class="d-flex justify-content-between">
+                      <a th:href="@{/posts}" class="btn btn-secondary">Cancel</a>
+                      <button type="submit" class="btn btn-primary">Add Post</button>
+                    </div>
                   </form>
                 </div>
               </div>
+            </div>
           </div>
-        </section>
-        <th:block th:replace="~{fragments/footer :: footer}"></th:block>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="script.js"></script>
+        </div>
+      </section>
+      <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <script src="script.js"></script>
     </body>
 </html>

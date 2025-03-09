@@ -22,7 +22,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model, @RequestParam(required = false, name = "sort_by", defaultValue = "createdAt") String sort_by, 
-    @RequestParam(required = false, name = "pre_page", defaultValue = "2") String per_page,
+    @RequestParam(required = false, name = "per_page", defaultValue = "2") String per_page,
     @RequestParam(required = false, name = "page", defaultValue = "1") String page) {
         Page<Post> posts_on_page = postService.findAll(Integer.parseInt(page)-1, Integer.parseInt(per_page), sort_by);
         int total_pages = posts_on_page.getTotalPages();
