@@ -10,6 +10,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <link rel="stylesheet" type="text/css" href="/css/stijl.css">
         <!-- Custom Font -->
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" th:href="@{/afbeeldingen/favicon.ico}">
     </head>
     <body>
       <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
@@ -40,8 +42,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                     </div>
                     <!-- Submit & Cancel Buttons -->
                     <div class="d-flex justify-content-between">
-                      <a th:href="@{/posts}" class="btn btn-secondary">Cancel</a>
-                      <button type="submit" class="btn btn-primary">Add Post</button>
+                      <a th:href="@{/posts}" class="btn btn-secondary m-4">Cancel</a>
+                      <button type="submit" class="btn btn-primary m-4">Add Post</button>
                     </div>
                   </form>
                 </div>
@@ -50,8 +52,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
           </div>
         </div>
       </section>
+      <button id="backToTop" class="btn btn-primary back-to-top">↑ Back to Top</button>
       <th:block th:replace="~{fragments/footer :: footer}"></th:block>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-      <script src="script.js"></script>
+      <script th:src="@{/js/script.js}"></script>
     </body>
 </html>

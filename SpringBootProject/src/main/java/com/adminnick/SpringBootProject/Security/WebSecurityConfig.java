@@ -23,7 +23,7 @@ public class WebSecurityConfig {
         "/db-console/**",
         "/css/**",
         "/fonts/",
-        "/images/**",
+        "/afbeeldingen/**",
         "/js/**",
         "/resources/**",
         "/posts/**"

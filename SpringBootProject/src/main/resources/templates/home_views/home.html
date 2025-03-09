@@ -10,6 +10,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <link rel="stylesheet" th:href="@{css/stijl.css}">
         <!-- Custom Font -->
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" th:href="@{/afbeeldingen/favicon.ico}">
     </head>
     <body>
       <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
@@ -19,11 +21,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
           <div class="filter-bar d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
               <label class="me-2 fw-bold">Sort by:</label>
-              <select class="form-select me-3" name="sort_by">
+              <select class="form-select me-3" name="sort_by" style="width: fit-content;">
                 <option value="createdAt">Created date</option>
                 <option value="updatedAt">Updated date</option>
               </select>
-              <label class="me-2 fw-bold">Per page:</label>
+              <label class="me-2 fw-bold" style="width: max-content;">Per page:</label>
               <select class="form-select me-3" name="per_page">
                 <option value="2">2</option>
                 <option value="5">5</option>
@@ -31,7 +33,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 <option value="15">15</option>
               </select>
             </div>
-            <button class="btn btn-primary" type="submit">Apply Filters</button>
+            <div class="apply_filters">
+              <button class="btn btn-primary" type="submit">Apply Filters</button>
+            </div>
           </div>
         </form>
         <!-- Post Listings -->

@@ -10,6 +10,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         <link rel="stylesheet" type="text/css" href="/css/stijl.css">
         <!-- Custom Font -->
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" th:href="@{/afbeeldingen/favicon.ico}">
     </head>
     <body>
       <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
@@ -25,8 +27,8 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </p><hr>
             <p class="post-body" th:utext="${post.body}">body</p>
             <div sec:authorize="isAuthenticated()" th:if="${isOwner}" class="mt-4">
-              <a th:href="@{'/posts/' + ${post.id} + '/edit'}" class="btn btn-secondary btn-action">Edit</a>
-              <button type="button" class="btn btn-danger btn-action" data-bs-toggle="modal" data-bs-target="#deleteModal">
+              <a th:href="@{'/posts/' + ${post.id} + '/edit'}" class="btn btn-secondary btn-action m-1" style="max-width: fit-content;">Edit</a>
+              <button type="button" class="btn btn-danger btn-action m-1" data-bs-toggle="modal" data-bs-target="#deleteModal" style="padding: 10px;">
                 Delete
               </button>
             </div>
